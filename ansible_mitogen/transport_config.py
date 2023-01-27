@@ -433,12 +433,13 @@ class PlayContextSpec(Spec):
         return self._play_context.become_method
 
     def become_user(self):
-        return self._play_context.become_user
+        return self._connection.templar.template(self._play_context.become_user)
 
     def become_pass(self):
         become_method = self.become_method()
         become_plugin = ansible_mitogen.loaders.become_loader.get(become_method)
         become_pass = become_plugin.get_option('become_pass', hostvars=self._task_vars)
+        become_pass = self._connection.templar.template(become_pass)
         return optional_secret(become_pass)
 
     def password(self):
