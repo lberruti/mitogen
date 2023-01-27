@@ -1,0 +1,22 @@
+# Verify passwordful sudo behaviour with template
+
+- name: integration/become/become_template.yml
+  hosts: test-targets
+  vars:
+    _user: mitogen__pw_required
+    _password: pw_required_password
+    ansible_become_user: '{{ _user }}'
+    ansible_become_pass: '{{ _password }}'
+  tasks:
+
+    - name: Ensure become var templated.
+      shell: whoami
+      become: true
+      register: out
+
+    - assert:
+        that:
+          - out.stdout == 'mitogen__pw_required'
+  tags:
+    - sudo
+    - sudo_become_template
