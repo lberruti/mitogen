@@ -154,3 +154,6 @@ jobs:
       Ans_310_7:
         python.version: '3.10'
         tox.env: py310-mode_ansible-ansible7
+      Ans_310_8:
+        python.version: '3.10'
+        tox.env: py310-mode_ansible-ansible8
