@@ -157,3 +157,6 @@ jobs:
       Ans_311_8:
         python.version: '3.11'
         tox.env: py311-mode_ansible-ansible8
+      Ans_311_9:
+        python.version: '3.11'
+        tox.env: py311-mode_ansible-ansible9
